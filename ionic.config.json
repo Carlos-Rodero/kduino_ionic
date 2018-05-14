@@ -1,0 +1,8 @@
+{
+  "name": "kduino",
+  "app_id": "af128a43",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
