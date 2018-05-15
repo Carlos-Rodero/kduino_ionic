@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-/**
- * Generated class for the PlayPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 
 @Component({
@@ -15,8 +11,38 @@ import { NavController } from 'ionic-angular';
 })
 export class PlayPage {
 
-  constructor(public navCtrl: NavController) {
+  posts: any;
+
+  constructor(public navCtrl: NavController, public http: Http) {
+    this.posts = null;
   }
 
+  startMeasure() {
+    this.http.get('http://192.168.4.1/s').map(res => res.json()).subscribe(data => {
+      this.posts = data;
+      console.log(this.posts);
+    });
+  }
+
+  stopMeasure() {
+    this.http.get('http://192.168.4.1/x').map(res => res.json()).subscribe(data => {
+      this.posts = data;
+      console.log(this.posts);
+    });
+  }
+
+  readMeasure() {
+    this.http.get('http://192.168.4.1/r').map(res => res.json()).subscribe(data => {
+      this.posts = data;
+      console.log(this.posts);
+    });
+  }
+
+  deleteMeasure() {
+    this.http.get('http://192.168.4.1/e').map(res => res.json()).subscribe(data => {
+      this.posts = data;
+      console.log(this.posts);
+    });
+  }
 
 }

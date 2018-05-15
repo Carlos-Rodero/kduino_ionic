@@ -1,3 +1,92 @@
 page-play {
 
+    .play_stop_container {
+        width: 60%;
+        margin:auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .data_container {
+        padding-top: 3em;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .kd_container {
+        padding-top: 3em;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .trash_container {
+        padding-top: 3em;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .download_container {
+        padding-top: 3em;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .start_button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        margin-right: 1em;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 40%;
+    }
+
+    .stop_button {
+        background-color: rgb(224, 22, 22); /* Green */
+        border: none;
+        color: white;
+        margin-left: 1em;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 40%;
+    }
+
+    .download_button {
+        background-color: rgb(158, 164, 168); /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 20%;
+    }
+
+    .trash_button {
+        background-color: rgb(158, 164, 168); /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 40%;
+    }
+
 }
