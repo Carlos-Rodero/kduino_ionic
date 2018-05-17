@@ -1,15 +1,21 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>KdUINO Control</ion-title>
+  <ion-navbar>
+    <ion-title>KdUINO Control</ion-title>
 
-        <ion-searchbar *ngIf=SearchOn (ionInput)="FilterItems($event)" [class.SearchBar]="true"></ion-searchbar>
+    <ion-searchbar *ngIf=SearchOn (ionInput)="FilterItems($event)" [class.SearchBar]="true"></ion-searchbar>
 
-        <ion-buttons end  class="UMSNavButtons">
-            <button ion-button (click)="SearchToggle()"><ion-icon name="search"></ion-icon></button>
-            <button ion-button (click)="Share()"><ion-icon name="share"></ion-icon></button>
-            <button ion-button (click)="Settings()"><ion-icon name="more"></ion-icon></button>
-        </ion-buttons>
-    </ion-navbar>
+    <ion-buttons end class="UMSNavButtons">
+      <button ion-button (click)="SearchToggle()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button (click)="Share()">
+        <ion-icon name="share"></ion-icon>
+      </button>
+      <button ion-button (click)="Settings()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -18,7 +24,7 @@
       <ion-icon name="play"></ion-icon>
       Play
     </button>
-    
+
     <button class="stop_button" ion-button round (click)="stopMeasure()">
       <ion-icon name="hand"></ion-icon>
       Stop
@@ -27,6 +33,14 @@
 
   <div class="data_container">
     <h2>Data</h2>
+    <ion-scroll scrollY="true" style="width: 100%; height: 100%;">
+      <div class="data">
+        <p *ngIf="posts">
+            {{posts.info}}
+        </p>
+        <p>{{data}}</p>
+      </div>
+    </ion-scroll>
   </div>
 
   <div class="kd_container">
@@ -43,7 +57,7 @@
   <div class="trash_container">
     <button class="trash_button" ion-button round (click)="deleteMeasure()">
       <ion-icon name="trash"></ion-icon>
-      Delete data from stations
+      Delete
     </button>
   </div>
 

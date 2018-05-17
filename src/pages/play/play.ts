@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class PlayPage {
 
   posts: any;
+  data: any;
 
   constructor(public navCtrl: NavController, public http: Http) {
     this.posts = null;
@@ -32,9 +33,9 @@ export class PlayPage {
   }
 
   readMeasure() {
-    this.http.get('http://192.168.4.1/r').map(res => res.json()).subscribe(data => {
-      this.posts = data;
-      console.log(this.posts);
+    this.http.get('http://192.168.4.1/r').map(res => res.text()).subscribe(data => {
+      this.data = data;
+      console.log(this.data);
     });
   }
 
