@@ -1,11 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>KdUINO</ion-title>
+
+    <ion-buttons end class="UMSNavButtons">
+      <button ion-button (click)="refresh_devices()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to KdUINO!</h2>
+  <div class="title">
+    <div *ngIf="error;then content">
+      Connection OK!
+    </div>
+    <ng-template #content>Not connected to KdUINO</ng-template>
+  </div>
   <ion-list>
     <ion-item *ngFor="let post of posts">
       <p>{{post.ip}}</p>

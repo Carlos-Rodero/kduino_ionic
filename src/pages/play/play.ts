@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
@@ -47,11 +47,20 @@ export class PlayPage {
   }
 
   uploadMeasure() {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
     this.http.get('http://xarlie32.pythonanywhere.com/connect').map(res => res.json()).subscribe(data => {
       this.posts = data;
       console.log(this.posts);
-      
+    });
+
+    this.http.post('http://xarlie32.pythonanywhere.com/api/data/1', {"prova":"json desde ionic"},  
+    {headers: headers}).map(res => res.json()).subscribe(data => {
+      this.posts = data;
+      console.log(this.posts);
     });
   }
+
 
 }
