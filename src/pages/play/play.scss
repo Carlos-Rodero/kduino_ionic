@@ -32,6 +32,14 @@ page-play {
         justify-content: center;
     }
 
+    .upload_container {
+        padding-top: 3em;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
     .download_container {
         padding-top: 3em;
         width: 60%;
@@ -82,6 +90,18 @@ page-play {
         background-color: rgb(158, 164, 168); 
         color: black;
         border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: auto;
+    }
+
+    .upload_button {
+        background-color: rgb(68, 3, 65); 
+        border: none;
+        color: white;
         padding: 15px 32px;
         text-align: center;
         text-decoration: none;
