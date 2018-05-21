@@ -3,6 +3,9 @@
     <ion-title>KdUINO</ion-title>
 
     <ion-buttons end class="UMSNavButtons">
+      <button ion-button (click)="ping_devices()">
+        <ion-icon name="radio-button-on"></ion-icon>
+      </button>
       <button ion-button (click)="refresh_devices()">
         <ion-icon name="refresh"></ion-icon>
       </button>
@@ -11,16 +14,42 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="title">
-    <div *ngIf="error;then content">
+  <div class="message">
+    <div *ngIf="is_connected;then content">
       Connection OK!
     </div>
     <ng-template #content>Not connected to KdUINO</ng-template>
+    <ion-list>
+      <ion-item *ngFor="let post of posts" (click)="itemClicked($event, post)">
+        <p>{{post.ip}}</p>
+        <p>{{post.mac}}</p>
+      </ion-item>
+    </ion-list>
+    <ion-list class="metadata">
+      <ion-item>
+        <ion-row>
+          <ion-col width-50>
+            <button ion-button (click)="measurement_time_devices()">
+              measurement time
+            </button>
+          </ion-col>
+          <ion-col width-50>
+            <button ion-button (click)="position_devices()">
+              position
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+    <div class="time">
+      <div *ngIf="is_received_time">
+        Time OK! {{data_time.info}}
+      </div>
+    </div>
+    <div class="position">
+      <div *ngIf="is_received_position">
+        Position OK! {{data_position.info}}
+      </div>
+    </div>
   </div>
-  <ion-list>
-    <ion-item *ngFor="let post of posts">
-      <p>{{post.ip}}</p>
-      <p>{{post.mac}}</p>
-    </ion-item>
-  </ion-list>
 </ion-content>

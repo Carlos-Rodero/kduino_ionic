@@ -2,10 +2,13 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Dialogs } from '@ionic-native/dialogs';
+import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { PlayPage } from '../pages/play/play';
+import { DetailPage } from '../pages/detail/detail';
 import { AboutPage } from '../pages/about/about';
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -19,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     PlayPage,
+    DetailPage,
     AboutPage,
     TabsPage,
     DataComponent,
@@ -33,6 +37,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     PlayPage,
+    DetailPage,
     AboutPage,
     TabsPage,
     DataComponent,
@@ -40,6 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    Dialogs,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

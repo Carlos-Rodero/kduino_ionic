@@ -1,0 +1,39 @@
+page-detail {
+
+    .form {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        text-align: center; 
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+    }
+
+    button[type=submit] {
+        background-color: rgb(4, 3, 68); 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 60%;
+    }
+    .depth {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        text-align: center; 
+        font-size: 16px;
+    }
+}

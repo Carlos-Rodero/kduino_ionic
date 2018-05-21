@@ -1,12 +1,38 @@
 page-home {
 
-    .title {
-        font-size: 12px;
+    .message {
+        text-align: center;
+        font-size: 14px;
         color: rgb(11, 70, 97);
         width: 100%;
         margin: auto;
-        display: flex;
-        justify-content: center;
     }
 
+    .list .item  {
+        background-color: rgb(171, 219, 241);
+        border-width: 1px;
+        border-color: rgb(41, 40, 40);
+        text-align: center;
+      }
+      
+    .list {
+    margin-top:0%;
+    width: 100%;
+    margin: auto;
+    }
+
+    .metadata .item{
+        margin-top: 10px;
+        display:inline-block;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        color: white;
+        margin-right: 1em;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        width: auto;
+    }
 }
