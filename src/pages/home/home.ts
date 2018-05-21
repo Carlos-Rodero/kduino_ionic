@@ -22,8 +22,9 @@ export class HomePage {
 
   date = new Date();
   month = this.getMonth();
+  minutes = this.getMinutes();
   timeStamp: any = this.date.getFullYear() + "/" + this.month + "/" +
-    this.date.getDate() + "-" + this.date.getHours() + ":" + this.date.getMinutes() +
+    this.date.getDate() + "-" + this.date.getHours() + ":" + this.minutes +
     ":" + this.date.getSeconds();
 
   data_time: any;
@@ -64,6 +65,14 @@ export class HomePage {
       return "0" + (this.date.getMonth() + 1);
     } else {
       return (this.date.getMonth() + 1);
+    }
+  }
+
+  getMinutes() {
+    if (this.date.getMinutes() < 10) {
+      return "0" + (this.date.getMinutes());
+    } else {
+      return (this.date.getMinutes());
     }
   }
 

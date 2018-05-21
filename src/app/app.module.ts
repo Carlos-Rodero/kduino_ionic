@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Dialogs } from '@ionic-native/dialogs';
 import { Geolocation } from '@ionic-native/geolocation';
+import { SQLite } from '@ionic-native/sqlite';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -16,6 +18,7 @@ import { DataComponent } from '../components/data/data';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { BdKduinoProvider } from '../providers/bd-kduino/bd-kduino';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: 'db_kduino',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +54,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     Dialogs,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    SQLite,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BdKduinoProvider
   ]
 })
 export class AppModule {}
