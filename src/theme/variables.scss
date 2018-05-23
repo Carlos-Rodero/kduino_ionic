@@ -37,11 +37,17 @@ $font-family-monospace:           Monaco, Menlo, Consolas, "Courier New", monosp
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #7ea3e2,
+  primary-copy:    #488aff,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  calm: (
+      base: #7ea3e2,
+      contrast: #f4f4f4,
+    ),
+
 );
 
 

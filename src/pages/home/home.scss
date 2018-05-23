@@ -1,6 +1,11 @@
 page-home {
 
-    .message {
+    .navbar_message {
+        text-align: center;
+    }
+
+    .message, .container_message_received {
+        padding: 1em;
         text-align: center;
         font-size: 14px;
         color: rgb(11, 70, 97);
@@ -8,31 +13,76 @@ page-home {
         margin: auto;
     }
 
-    .list .item  {
-        background-color: rgb(171, 219, 241);
-        border-width: 1px;
-        border-color: rgb(41, 40, 40);
-        text-align: center;
-      }
-      
-    .list {
-    margin-top:0%;
-    width: 100%;
-    margin: auto;
+    ion-item:nth-of-type(even) {
+        div, p{
+            text-align: center;
+            width: 100%;
+            margin: auto;
+            background-color: #7ea3e2;
+            color: #f4f4f4;
+        }
     }
 
-    .metadata .item{
-        margin-top: 10px;
-        display:inline-block;
+    ion-item:nth-of-type(odd) {
+        div, p{
+            text-align: center;
+            width: 100%;
+            margin: auto;
+            background-color: #bdd2f7;
+            color: rgb(11, 70, 97);
+        }
+    }
+
+    ion-item:nth-of-type(odd):hover {
+        div, p{
+            background-color: rgb(11, 70, 97) !important;
+            color: #f4f4f4;
+        }
+    }
+
+    ion-item:nth-of-type(even):hover {
+        div, p{
+            background-color: rgb(11, 70, 97) !important;
+            color: #f4f4f4;
+        }
+    }
+
+    .stations {
+        width: 80%;
+        margin: auto;
+        padding: 0.1em;
+    }
+
+    .metadata {
+        display: flex; 
+        justify-content: center;
     }
 
     .button {
-        background-color: #4CAF50;
+        background-color: rgb(11, 70, 97);
         color: white;
         margin-right: 1em;
         text-align: center;
         text-decoration: none;
         font-size: 16px;
         width: auto;
+    }
+
+    .btn {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 1px ;
+        background-color: rgb(11, 70, 97);
+        color: white;
+      }
+
+    .btn:hover{
+        background-color: orange !important;
+    }
+
+    .button:hover{
+        background-color: orange !important;
+        color: rgb(11, 70, 97);
     }
 }

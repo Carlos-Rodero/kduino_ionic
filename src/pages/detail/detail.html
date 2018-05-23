@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="calm">
     <ion-title>{{itemSeleccionat.ip}}</ion-title>
-    <ion-buttons end class="UMSNavButtons">
-      <button ion-button (click)="ping_device()">
+    <ion-buttons end>
+      <button ion-button class="btn" (click)="ping_device()">
         <ion-icon name="radio-button-on"></ion-icon>
       </button>
     </ion-buttons>
@@ -14,8 +14,8 @@
   <h2 text-center *ngIf="itemSeleccionat">
     {{itemSeleccionat.mac}}
   </h2>
-  <h3>Set depth in cm</h3>
   <div class="form">
+    <h3>Set depth in cm</h3>
     <form (ngSubmit)="depthForm()">
       <ion-item>
         <ion-input type="number" [(ngModel)]="depth" name="depth"></ion-input>
@@ -23,7 +23,7 @@
       <button ion-button type="submit" block>Ok</button>
     </form>
   </div>
-  <div class="depth">
+  <div class="container_message_received">
     <div *ngIf="is_received">
       Depth OK! {{data.info}}
     </div>

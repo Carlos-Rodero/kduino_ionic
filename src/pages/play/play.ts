@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 })
 export class PlayPage {
   posts: any;
+  upload: any;
   data_received: any;
   data_received_pretty: any;
   data_split_array: Array<any>;
@@ -76,8 +77,8 @@ export class PlayPage {
       console.log(data_json);
       this.http.post('http://xarlie32.pythonanywhere.com/api/data/1', data_json,
       { headers: headers }).map(res => res.json()).subscribe(data => {
-        this.posts = data;
-        console.log(this.posts);
+        this.upload = data;
+        console.log(this.upload);
       });
     });
   }

@@ -23,9 +23,10 @@ export class HomePage {
   date = new Date();
   month = this.getMonth();
   minutes = this.getMinutes();
+  seconds = this.getSeconds();
   timeStamp: any = this.date.getFullYear() + "/" + this.month + "/" +
     this.date.getDate() + "-" + this.date.getHours() + ":" + this.minutes +
-    ":" + this.date.getSeconds();
+    ":" + this.seconds;
 
   data_time: any;
   data_position: any;
@@ -73,6 +74,14 @@ export class HomePage {
       return "0" + (this.date.getMinutes());
     } else {
       return (this.date.getMinutes());
+    }
+  }
+
+  getSeconds() {
+    if (this.date.getSeconds() < 10) {
+      return "0" + (this.date.getSeconds());
+    } else {
+      return (this.date.getSeconds());
     }
   }
 
@@ -166,6 +175,8 @@ export class HomePage {
         {
           text: 'Accept',
           handler: data => {
+            this.date = new Date();
+            console.log(this.timeStamp)
             if (data == "gps") {
               this.geolocation.getCurrentPosition().then((resp) => {
                 this.http.get('http://192.168.4.1/m?timeStamp=' + this.timeStamp + '&latitude=' +
@@ -215,6 +226,8 @@ export class HomePage {
         {
           text: 'Accept',
           handler: data => {
+            this.date = new Date();
+            console.log(this.timeStamp);
             if (data.latitude && data.longitude) {
               this.http.get('http://192.168.4.1/m?timeStamp=' + this.timeStamp + '&latitude=' +
                 data.latitude + '&longitude=' + data.longitude).map(res => res.json()).

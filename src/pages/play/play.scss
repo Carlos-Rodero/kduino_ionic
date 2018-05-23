@@ -1,23 +1,114 @@
 page-play {
 
+    .navbar_message {
+        text-align: center;
+    }
+
+    .container_message_received, .data {
+        font-size: 14px;
+        color: rgb(11, 70, 97);
+        width: 100%;
+        margin: auto;
+    }
+
+    .button {
+        background-color: rgb(11, 70, 97);
+        color: white;
+        margin-right: 1em;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        width: auto;
+    }
+
+    .btn {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 1px ;
+        background-color: rgb(11, 70, 97);
+        color: white;
+      }
+
+    .btn:hover{
+        background-color: orange !important;
+    }
+
+    .button:hover{
+        background-color: orange !important;
+        color: rgb(11, 70, 97);
+    }
+
+    h2 {
+        text-align: center;
+        color: rgb(11, 70, 97);
+        width: 100%;
+        margin: auto;
+    }
+
+    .form {
+        width: 80%;
+        margin: auto;
+        border-radius: 5px;
+        background-color: #bdd2f7;
+        color: rgb(11, 70, 97);
+        padding: 20px;
+        text-align: center; 
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+    }
+
+    button[type=submit] {
+        background-color: rgb(11, 70, 97) !important;
+        border: none;
+        color: #f4f4f4;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 50%;
+    }
+
+    .data_container {
+        padding-top: 1em;
+        width: 80%;
+        height: 50%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        border-style: solid;
+        border-color: rgb(11, 70, 97);
+        background-color: #bdd2f7;
+    }
+
+    .kd_container {
+        padding-top: 3em;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
     .play_stop_container {
+        padding-top: 1em;
         width: 60%;
         margin:auto;
         display: flex;
         justify-content: center;
     }
 
-    .data_container {
-        padding-top: 3em;
-        width: 100%;
-        height: 50%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-    }
-
-    .kd_container {
-        padding-top: 3em;
+    .download_upload_container {
+        padding-top: 2em;
         width: 60%;
         margin: auto;
         display: flex;
@@ -25,23 +116,7 @@ page-play {
     }
 
     .trash_container {
-        padding-top: 3em;
-        width: 60%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-    }
-
-    .upload_container {
-        padding-top: 3em;
-        width: 60%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-    }
-
-    .download_container {
-        padding-top: 3em;
+        padding-top: 2em;
         width: 60%;
         margin: auto;
         display: flex;
@@ -58,7 +133,7 @@ page-play {
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        width: 40%;
+        width: auto;
     }
 
     .stop_button {
@@ -71,11 +146,11 @@ page-play {
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        width: 40%;
+        width: auto;
     }
 
     .download_button {
-        background-color: rgb(4, 3, 68); 
+        background-color: rgb(11, 70, 97); 
         border: none;
         color: white;
         padding: 15px 32px;

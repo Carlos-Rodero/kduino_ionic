@@ -1,12 +1,11 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="calm">
     <ion-title>KdUINO</ion-title>
-
-    <ion-buttons end class="UMSNavButtons">
-      <button ion-button (click)="ping_devices()">
+    <ion-buttons end>
+      <button ion-button class="btn" (click)="ping_devices()">
         <ion-icon name="radio-button-on"></ion-icon>
       </button>
-      <button ion-button (click)="refresh_devices()">
+      <button ion-button class="btn" (click)="refresh_devices()">
         <ion-icon name="refresh"></ion-icon>
       </button>
     </ion-buttons>
@@ -15,32 +14,28 @@
 
 <ion-content padding>
   <div class="message">
-    <div *ngIf="is_connected;then content">
-      Connection OK!
+    <div *ngIf="is_connected;else content">
+      <h2>Connection OK!</h2>
     </div>
-    <ng-template #content>Not connected to KdUINO</ng-template>
-    <ion-list>
-      <ion-item *ngFor="let post of posts" (click)="itemClicked($event, post)">
+    <ng-template #content><h2>Not connected to KdUINO</h2></ng-template>
+  </div>
+  <ion-list>
+    <ion-item class="stations" *ngFor="let post of posts;let i=index" (click)="itemClicked($event, post)">
+      <div>
         <p>{{post.ip}}</p>
         <p>{{post.mac}}</p>
-      </ion-item>
-    </ion-list>
-    <ion-list class="metadata">
-      <ion-item>
-        <ion-row>
-          <ion-col width-50>
-            <button ion-button (click)="measurement_time_devices()">
-              measurement time
-            </button>
-          </ion-col>
-          <ion-col width-50>
-            <button ion-button (click)="position_devices()">
-              position
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-list>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div class="metadata">
+    <button ion-button color="calm" (click)="measurement_time_devices()">
+      measurement time
+    </button>
+    <button ion-button color="calm" (click)="position_devices()">
+      position
+    </button>
+  </div>
+  <div class="container_message_received">
     <div class="time">
       <div *ngIf="is_received_time">
         Time OK! {{data_time.info}}

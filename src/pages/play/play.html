@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>KdUINO Control</ion-title>
+  <ion-navbar color="calm">
+    <ion-title>Control</ion-title>
 
-    <ion-buttons end class="UMSNavButtons">
-      <button ion-button (click)="SearchToggle()">
+    <ion-buttons end>
+      <button ion-button class="btn" (click)="SearchToggle()">
         <ion-icon name="search"></ion-icon>
       </button>
-      <button ion-button (click)="Share()">
+      <button ion-button class="btn" (click)="Share()">
         <ion-icon name="share"></ion-icon>
       </button>
-      <button ion-button (click)="Settings()">
+      <button ion-button class="btn" (click)="Settings()">
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
@@ -17,6 +17,28 @@
 </ion-header>
 
 <ion-content padding>
+  <h2>Incoming Data</h2>
+  <div class="data_container">
+    <ion-scroll scrollY="true" style="width: 100%; height: 100%;">
+      <div class="data">
+        <p *ngIf="posts">
+          {{posts.info}}
+        </p>
+        <p *ngIf="upload">
+          {{upload.info}}
+        </p>
+        <p>{{data_received}}</p>
+        <!--<code>
+                <pre>{{data_received_pretty |json}}</pre>
+            </code>-->
+      </div>
+    </ion-scroll>
+  </div>
+
+  <div class="kd_container" *ngIf="kd">
+    <h2>Kd</h2>
+  </div>
+
   <div class="play_stop_container">
     <button class="start_button" ion-button round (click)="startMeasure()">
       <ion-icon name="play"></ion-icon>
@@ -29,29 +51,15 @@
     </button>
   </div>
 
-  <div class="data_container">
-    <h2>Data</h2>
-    <ion-scroll scrollY="true" style="width: 100%; height: 100%;">
-      <div class="data">
-        <p *ngIf="posts">
-          {{posts.info}}
-        </p>
-        <p>{{data_received}}</p>
-        <!--<code>
-          <pre>{{data_received_pretty |json}}</pre>
-      </code>-->
-      </div>
-    </ion-scroll>
-  </div>
 
-  <div class="kd_container">
-    <h2>Kd</h2>
-  </div>
-
-  <div class="download_container">
+  <div class="download_upload_container">
     <button class="download_button" ion-button round (click)="readMeasure()">
       <ion-icon name="download"></ion-icon>
       Download
+    </button>
+    <button class="upload_button" ion-button round (click)="uploadMeasure()">
+      <ion-icon name="cloud-upload"></ion-icon>
+      Upload
     </button>
   </div>
 
@@ -61,15 +69,5 @@
       Delete
     </button>
   </div>
-
-  <div class="upload_container">
-    <button class="upload_button" ion-button round (click)="uploadMeasure()">
-      <ion-icon name="upload"></ion-icon>
-      Upload
-    </button>
-  </div>
-
-
-
 
 </ion-content>
