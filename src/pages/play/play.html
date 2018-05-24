@@ -27,7 +27,10 @@
         <p *ngIf="upload">
           {{upload.info}}
         </p>
-        <p>{{data_received}}</p>
+        <p *ngFor="let data_show of data_to_show;let i=index">
+          {{data_show}}
+        </p>
+        <!--<p>{{data_received}}</p>-->
         <!--<code>
                 <pre>{{data_received_pretty |json}}</pre>
             </code>-->

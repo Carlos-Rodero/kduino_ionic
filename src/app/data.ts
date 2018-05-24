@@ -1,78 +1,78 @@
 export class Data {
 
-  private _ip: {};
-  private _mac: {};
-  private _depth: {};
-  private _measurement_time: {};
-  private _timestamp: {};
-  private _latitude: {};
-  private _longitude: {};
-  private _values: any[] = [];
+  private ip: {};
+  private mac: {};
+  private depth: {};
+  private measurement_time: {};
+  private timestamp: {};
+  private latitude: {};
+  private longitude: {};
+  private values: any[] = [];
 
   public constructor() { };
 
-  get ip(): any {
-    return this._ip;
+  get _ip(): any {
+    return this.ip;
   }
 
-  set ip(ip: any) {
-    this._ip = ip;
+  set _ip(ip: any) {
+    this.ip = ip;
   }
 
-  get mac(): any {
-    return this._mac;
+  get _mac(): any {
+    return this.mac;
   }
 
-  set mac(mac: any) {
-    this._mac = mac;
+  set _mac(mac: any) {
+    this.mac = mac;
   }
 
-  get depth(): any {
-    return this._depth;
+  get _depth(): any {
+    return this.depth;
   }
 
-  set depth(depth: any) {
-    this._depth = depth;
+  set _depth(depth: any) {
+    this.depth = depth;
   }
 
-  get measurement_time(): any {
-    return this._measurement_time;
+  get _measurement_time(): any {
+    return this.measurement_time;
   }
 
-  set measurement_time(measurement_time: any) {
-    this._measurement_time = measurement_time;
+  set _measurement_time(measurement_time: any) {
+    this.measurement_time = measurement_time;
   }
 
-  get timestamp(): any {
-    return this._timestamp;
+  get _timestamp(): any {
+    return this.timestamp;
   }
 
-  set timestamp(timestamp: any) {
-    this._timestamp = timestamp;
+  set _timestamp(timestamp: any) {
+    this.timestamp = timestamp;
   }
 
-  get latitude(): any {
-    return this._latitude;
+  get _latitude(): any {
+    return this.latitude;
   }
 
-  set latitude(latitude: any) {
-    this._latitude = latitude;
+  set _latitude(latitude: any) {
+    this.latitude = latitude;
   }
 
-  get longitude(): any {
-    return this._longitude;
+  get _longitude(): any {
+    return this.longitude;
   }
 
-  set longitude(longitude: any) {
-    this._longitude = longitude;
+  set _longitude(longitude: any) {
+    this.longitude = longitude;
   }
 
-  get values(): any {
-    return this._values;
+  get _values(): any {
+    return this.values;
   }
 
-  set values(values: any) {
-    this._values.push(values);
+  set _values(values: any) {
+    this.values.push(values);
   }
 
 }

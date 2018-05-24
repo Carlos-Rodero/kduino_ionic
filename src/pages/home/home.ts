@@ -16,17 +16,12 @@ import 'rxjs/add/operator/catch';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
-  
+
   MAC: string = "5CCF7F";
   posts: any;
 
-  date = new Date();
-  month = this.getMonth();
-  minutes = this.getMinutes();
-  seconds = this.getSeconds();
-  timeStamp: any = this.date.getFullYear() + "/" + this.month + "/" +
-    this.date.getDate() + "-" + this.date.getHours() + ":" + this.minutes +
-    ":" + this.seconds;
+  date: any;
+  timeStamp: any; 
 
   data_time: any;
   data_position: any;
@@ -59,6 +54,13 @@ export class HomePage {
   filterDocument(doc) {
     this.posts = this.posts.filter(
       post => post.mac.indexOf(doc) == 0);
+  }
+
+  setTimestamp() {
+    this.date = new Date();
+    this.timeStamp = this.date.getFullYear() + "/" + this.getMonth() + "/" +
+      this.date.getDate() + "-" + this.date.getHours() + ":" + this.getMinutes() +
+      ":" + this.getSeconds();
   }
 
   getMonth() {
@@ -175,7 +177,7 @@ export class HomePage {
         {
           text: 'Accept',
           handler: data => {
-            this.date = new Date();
+            this.setTimestamp();
             console.log(this.timeStamp)
             if (data == "gps") {
               this.geolocation.getCurrentPosition().then((resp) => {
@@ -227,7 +229,7 @@ export class HomePage {
           text: 'Accept',
           handler: data => {
             this.date = new Date();
-            console.log(this.timeStamp);
+            this.setTimestamp();
             if (data.latitude && data.longitude) {
               this.http.get('http://192.168.4.1/m?timeStamp=' + this.timeStamp + '&latitude=' +
                 data.latitude + '&longitude=' + data.longitude).map(res => res.json()).

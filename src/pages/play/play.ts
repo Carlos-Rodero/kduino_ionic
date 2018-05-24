@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { NavController, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Data } from '../../app/data';
 
@@ -10,11 +10,13 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'page-play',
   templateUrl: 'play.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayPage {
   posts: any;
   upload: any;
   data_received: any;
+  data_to_show: any;
   data_received_pretty: any;
   data_split_array: Array<any>;
 
@@ -23,7 +25,8 @@ export class PlayPage {
 
   key: any;
 
-  constructor(public navCtrl: NavController, public http: Http, private storage: Storage) {
+  constructor(public navCtrl: NavController, public http: Http, private storage: Storage,
+    private alertCtrl: AlertController, private ref: ChangeDetectorRef, ) {
     this.posts = null;
   }
 
@@ -31,6 +34,7 @@ export class PlayPage {
     this.http.get('http://192.168.4.1/s').map(res => res.json()).subscribe(data => {
       this.posts = data;
       console.log(this.posts);
+      this.ref.markForCheck();
     });
   }
 
@@ -38,28 +42,162 @@ export class PlayPage {
     this.http.get('http://192.168.4.1/x').map(res => res.json()).subscribe(data => {
       this.posts = data;
       console.log(this.posts);
+      this.ref.markForCheck();
     });
   }
 
   readMeasure() {
-    this.http.get('http://192.168.4.1/r').map(res => res.text()).subscribe(data => {
-      this.data_received = data;
-      this.processData();
-      //this.data_received_pretty = JSON.stringify(this.data_array,null, 2);
-      this.data_array.forEach((item, index) => {
-        if (index == 0){
-          this.key = item.timestamp;
-          this.storage.set(item.timestamp, this.data_array);
+    let alert = this.alertCtrl.create({
+      title: 'Save as',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'name'
         }
-      });
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Accept',
+          handler: data => {
+            if (data.name) {
+              console.log(data.name);
+              console.log("choose download")
+              return this.setDownload();
+            } else {
+              console.log("invalid")
+              return false;
+            }
+          }
+        }
+      ]
     });
+    alert.present();
+  }
+
+  setDownload() {
+    let alert = this.alertCtrl.create({
+      title: 'Read from AP or\nDownload from Stations',
+      inputs: [
+        {
+          type: 'radio',
+          label: 'Read',
+          value: 'ap'
+        },
+        {
+          type: 'radio',
+          label: 'Download',
+          value: 'stations'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Accept',
+          handler: data => {
+            if (data == "ap") {
+              this.http.get('http://192.168.4.1/g').map(res => res.text()).subscribe(data => {
+                this.data_received = data;
+
+                var arr = data.split(",").filter(item => !item.includes("END"));
+                var data_container = [];
+                this.data_to_show = [];
+                arr.forEach((item, index) => {
+                  index++;
+                  if (item.toString())
+                    data_container.push(item);
+                  if ((index % 7) == 0) {
+                    this.data_to_show.push(data_container);
+                    data_container = [];
+                  }
+                });
+                this.processData();
+                this.ref.markForCheck();
+                //this.data_received_pretty = JSON.stringify(this.data_array,null, 2);
+                this.data_array.forEach((item, index) => {
+
+                  //if (this.storage.get(item._timestamp)) {
+                    this.key = item._timestamp;
+                    this.storage.set(item._timestamp, this.data_array);
+                  //}
+
+
+                });
+              });
+            }
+            if (data == "stations") {
+              this.http.get('http://192.168.4.1/r').map(res => res.text()).subscribe(data => {
+                this.data_received = data;
+
+                var arr = data.split(",").filter(item => !item.includes("END"));
+                var data_container = [];
+                this.data_to_show = [];
+                arr.forEach((item, index) => {
+                  index++;
+                  if (item.toString())
+                    data_container.push(item);
+                  if ((index % 7) == 0) {
+                    this.data_to_show.push(data_container);
+                    data_container = [];
+                  }
+                });
+                this.processData();
+                this.ref.markForCheck();
+                //this.data_received_pretty = JSON.stringify(this.data_array,null, 2);
+                this.data_array.forEach((item, index) => {
+
+                  //if (this.storage.get(item._timestamp)) {
+                    this.key = item._timestamp;
+                    this.storage.set(item._timestamp, this.data_array);
+                  //}
+
+                });
+              });
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   deleteMeasure() {
-    this.http.get('http://192.168.4.1/e').map(res => res.json()).subscribe(data => {
-      this.posts = data;
-      console.log(this.posts);
+    let alert = this.alertCtrl.create({
+      title: 'Are you sure you want to delete?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Accept',
+          handler: data => {
+            this.http.get('http://192.168.4.1/e').map(res => res.json()).subscribe(data => {
+              this.posts = data;
+              console.log(this.posts);
+              this.ref.markForCheck();
+            });
+          }
+        }
+      ]
     });
+    alert.present();
   }
 
   uploadMeasure() {
@@ -69,6 +207,7 @@ export class PlayPage {
     this.http.get('http://xarlie32.pythonanywhere.com/connect').map(res => res.json()).subscribe(data => {
       this.posts = data;
       console.log(this.posts);
+      this.ref.markForCheck();
     });
 
     this.storage.get(this.key).then((val) => {
@@ -76,10 +215,11 @@ export class PlayPage {
       var data_json = JSON.stringify(val);
       console.log(data_json);
       this.http.post('http://xarlie32.pythonanywhere.com/api/data/1', data_json,
-      { headers: headers }).map(res => res.json()).subscribe(data => {
-        this.upload = data;
-        console.log(this.upload);
-      });
+        { headers: headers }).map(res => res.json()).subscribe(data => {
+          this.upload = data;
+          console.log(this.upload);
+          this.ref.markForCheck();
+        });
     });
   }
 
@@ -95,7 +235,7 @@ export class PlayPage {
         is_metadata = true;
         count = 0;
         var pos = item.indexOf("S");
-        this.data.ip = item.slice(pos + 1);
+        this.data._ip = item.slice(pos + 1);
       }
       if (item.indexOf("END") !== -1) {
         this.data_array.push(this.data);
@@ -103,22 +243,22 @@ export class PlayPage {
       }
       if (is_metadata) {
         if (count == 1) {
-          this.data.mac = item;
+          this.data._mac = item;
         }
         if (count == 2) {
-          this.data.measurement_time = item;
+          this.data._measurement_time = item;
         }
         if (count == 3) {
-          this.data.depth = item;
+          this.data._depth = item;
         }
         if (count == 4) {
-          this.data.timestamp = item;
+          this.data._timestamp = item;
         }
         if (count == 5) {
-          this.data.latitude = item;
+          this.data._latitude = item;
         }
         if (count == 6) {
-          this.data.longitude = item;
+          this.data._longitude = item;
         }
       } else {
         if (count == 0) {
@@ -142,7 +282,7 @@ export class PlayPage {
         }
         if (count == 6) {
           values.push({ "clear": item });
-          this.data.values = values;
+          this.data._values = values;
         }
       }
       if ((count !== 0) && (count % 6 == 0)) {
