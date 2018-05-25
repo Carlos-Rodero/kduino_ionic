@@ -126,15 +126,33 @@ export class PlayPage {
                 });
                 this.processData();
                 this.ref.markForCheck();
+                console.log(this.data_array);
                 //this.data_received_pretty = JSON.stringify(this.data_array,null, 2);
+
                 this.data_array.forEach((item, index) => {
 
-                  //if (this.storage.get(item._timestamp)) {
-                    this.key = item._timestamp;
-                    this.storage.set(item._timestamp, this.data_array);
+                  this.storage.get(item._timestamp).then(result => {
+
+                    result.forEach((result_item, result_index) => {
+                      if (result == null) {
+                        this.storage.set(item._timestamp, this.data_array);
+                      } else {
+
+                        if (result_item.timestamp == item._timestamp) {
+                          //console.log('Your data saved is', result);
+                        } else {
+                          console.log(this.data_array.filter(res => res._timestamp == result_item.timestamp));
+                          this.storage.set(item._timestamp, this.data_array.filter(res => res._timestamp == result_item.timestamp));
+                        }
+                      }
+                    });
+                  }).catch(e => {
+                    console.log("error: ");
+                    console.log(e);
+                  });
+                  //this.key = item._timestamp;
+                  //this.storage.set(item._timestamp, this.data_array);
                   //}
-
-
                 });
               });
             }
@@ -155,17 +173,36 @@ export class PlayPage {
                   }
                 });
                 this.processData();
+                console.log(this.data_array);
                 this.ref.markForCheck();
                 //this.data_received_pretty = JSON.stringify(this.data_array,null, 2);
+
                 this.data_array.forEach((item, index) => {
 
-                  //if (this.storage.get(item._timestamp)) {
-                    this.key = item._timestamp;
-                    this.storage.set(item._timestamp, this.data_array);
+                  this.storage.get(item._timestamp).then(result => {
+                    if (result == null) {
+                      this.storage.set(item._timestamp, this.data_array);
+                    } else {
+                      result.forEach((result_item, result_index) => {
+                        if (result_item.timestamp == item._timestamp) {
+                          //console.log('Your data saved is', result);
+                        } else {
+                          console.log(this.data_array.filter(res => res._timestamp == result_item.timestamp));
+                          this.storage.set(item._timestamp, this.data_array.filter(res => res._timestamp == result_item.timestamp));
+                        }
+                      });
+                      //console.log('Your data is', result);
+                    }
+                  }).catch(e => {
+                    console.log("error: ");
+                    console.log(e);
+                  });
+                  //this.key = item._timestamp;
+                  //this.storage.set(item._timestamp, this.data_array);
                   //}
-
                 });
               });
+
             }
           }
         }
@@ -210,25 +247,28 @@ export class PlayPage {
       this.ref.markForCheck();
     });
 
-    this.storage.get(this.key).then((val) => {
-      console.log('Your json is', val);
-      var data_json = JSON.stringify(val);
-      console.log(data_json);
-      this.http.post('http://xarlie32.pythonanywhere.com/api/data/1', data_json,
-        { headers: headers }).map(res => res.json()).subscribe(data => {
-          this.upload = data;
-          console.log(this.upload);
-          this.ref.markForCheck();
-        });
-    });
+    this.storage.forEach( (value, key, index) => {
+      this.storage.get(key).then((val) => {
+        console.log('Your json is', val);
+        //var data_json = JSON.stringify(val);
+        //console.log(data_json);
+        this.http.post('http://xarlie32.pythonanywhere.com/api/data/1', val,
+          { headers: headers }).map(res => res.json()).subscribe(data => {
+            this.upload = data;
+            console.log(this.upload);
+            this.ref.markForCheck();
+          });
+      });
+    })
+    
   }
 
   processData() {
+    this.data_array = [];
     var is_metadata = false;
     var count = 0;
     var values: any[];
     this.data_split_array = this.data_received.split(",");
-
     this.data_split_array.forEach((item, index) => {
       if (item.indexOf("$") !== -1) {
         this.data = new Data();
@@ -292,7 +332,12 @@ export class PlayPage {
       count++;
     });
     /*this.data_array.forEach((item, index) => {
-      console.log(item.depth);
+      console.log(item);
     });*/
   }
+
+  processKd() {
+
+  }
+
 }
