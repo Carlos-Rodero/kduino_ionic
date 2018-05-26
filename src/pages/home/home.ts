@@ -52,6 +52,9 @@ export class HomePage {
       });
   }
 
+  ionViewDidLoad() {
+  }
+
   filterDocument(doc) {
     this.posts = this.posts.filter(
       post => post.mac.indexOf(doc) == 0);
