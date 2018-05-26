@@ -5,6 +5,9 @@
       <button ion-button class="btn" (click)="ping_device()">
         <ion-icon name="radio-button-on"></ion-icon>
       </button>
+      <button ion-button class="btn" (click)="delete_device()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -24,8 +27,11 @@
     </form>
   </div>
   <div class="container_message_received">
-    <div *ngIf="is_received">
+    <div *ngIf="depth_is_received">
       Depth OK! {{data.info}}
+    </div>
+    <div *ngIf="delete_is_received">
+      Delete OK! {{data.info}}
     </div>
   </div>
 </ion-content>

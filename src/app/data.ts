@@ -1,5 +1,5 @@
 export class Data {
-
+  private name: {};
   private ip: {};
   private mac: {};
   private depth: {};
@@ -10,6 +10,14 @@ export class Data {
   private values: any[] = [];
 
   public constructor() { };
+
+  get _name(): any {
+    return this.name;
+  }
+
+  set _name(name: any) {
+    this.name = name;
+  }
 
   get _ip(): any {
     return this.ip;

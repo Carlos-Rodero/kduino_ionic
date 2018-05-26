@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar color="calm">
+      <ion-title>Stats</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content>
+    <div class="webview" *ngIf="is_connected;else content">
+        <iframe  height="100%" width="100%" [src]="urlpaste()"></iframe>
+      </div>
+      <ng-template #content>
+        <h2>internet connection required to use stats</h2>
+      </ng-template>
+    
+</ion-content>

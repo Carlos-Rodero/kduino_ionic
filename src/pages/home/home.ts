@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Storage } from '@ionic/storage';
 
 import { DetailPage } from '../detail/detail';
 
@@ -21,7 +22,7 @@ export class HomePage {
   posts: any;
 
   date: any;
-  timeStamp: any; 
+  timeStamp: any;
 
   data_time: any;
   data_position: any;
@@ -32,7 +33,7 @@ export class HomePage {
   errorMsg: string = "Connection error";
 
   constructor(public navCtrl: NavController, public http: Http, private ref: ChangeDetectorRef,
-    private alertCtrl: AlertController, private geolocation: Geolocation) {
+    private alertCtrl: AlertController, private geolocation: Geolocation, private storage: Storage) {
 
     this.posts = null;
     this.is_connected = false;
@@ -118,6 +119,7 @@ export class HomePage {
       title: 'Set Measurement Time',
       inputs: [
         {
+          type: "number",
           name: 'time',
           placeholder: 'seconds'
         }
@@ -239,6 +241,30 @@ export class HomePage {
                   this.ref.markForCheck();
                 });
             }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  delete_app() {
+    let alert = this.alertCtrl.create({
+      title: 'Are you sure you want to delete data saved in this mobile?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Accept',
+          handler: data => {
+            this.storage.forEach((value, key, index) => {
+              this.storage.clear();
+            })
           }
         }
       ]

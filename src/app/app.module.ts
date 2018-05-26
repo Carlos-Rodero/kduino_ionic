@@ -11,7 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PlayPage } from '../pages/play/play';
 import { DetailPage } from '../pages/detail/detail';
-import { AboutPage } from '../pages/about/about';
+import { StatsPage } from '../pages/stats/stats';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { DataComponent } from '../components/data/data';
@@ -26,7 +26,7 @@ import { BdKduinoProvider } from '../providers/bd-kduino/bd-kduino';
     HomePage,
     PlayPage,
     DetailPage,
-    AboutPage,
+    StatsPage,
     TabsPage,
     DataComponent,
   ],
@@ -45,7 +45,7 @@ import { BdKduinoProvider } from '../providers/bd-kduino/bd-kduino';
     HomePage,
     PlayPage,
     DetailPage,
-    AboutPage,
+    StatsPage,
     TabsPage,
     DataComponent,
   ],

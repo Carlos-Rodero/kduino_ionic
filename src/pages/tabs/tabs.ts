@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { HomePage } from '../home/home';
 import { PlayPage } from '../play/play';
-import { AboutPage } from '../about/about';
+import { StatsPage } from '../stats/stats';
 
 
 
@@ -13,6 +13,7 @@ export class TabsPage {
 
   tab1Root = HomePage;
   tab2Root = PlayPage;
+  tab3Root = StatsPage
 
   constructor() {
 

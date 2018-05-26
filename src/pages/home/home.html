@@ -17,7 +17,9 @@
     <div *ngIf="is_connected;else content">
       <h2>Connection OK!</h2>
     </div>
-    <ng-template #content><h2>Not connected to KdUINO</h2></ng-template>
+    <ng-template #content>
+      <h2>Not connected to KdUINO</h2>
+    </ng-template>
   </div>
   <ion-list>
     <ion-item class="stations" *ngFor="let post of posts;let i=index" (click)="itemClicked($event, post)">
@@ -47,4 +49,15 @@
       </div>
     </div>
   </div>
+
 </ion-content>
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <div class="delete">
+      <button class="trash_button" ion-button color="calm" (click)="delete_app()">
+        <ion-icon name="trash"></ion-icon>
+        clear data in this App
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
